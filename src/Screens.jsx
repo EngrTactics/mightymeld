@@ -27,19 +27,19 @@ export function StartScreen({ start }) {
 
         <div className="flex flex-col items-center gap-3">
           <button
-            onClick={start}
+            onClick={() => start(1)}
             className="w-48 bg-gray-400 text-white py-2 px-10 rounded-full bg-gradient-to-b from-pink-400 to-pink-600 shadow-lg active:bg-pink-600"
           >
             Level 1
           </button>
           <button
-            onClick={start}
+            onClick={() => start(2)}
             className="w-48 bg-gray-400 text-white py-2 px-10 rounded-full bg-gradient-to-b from-pink-400 to-pink-600 shadow-lg active:bg-pink-600"
           >
             Level 2
           </button>
           <button
-            onClick={start}
+            onClick={() => start(3)}
             className="w-48 bg-gray-400 text-white py-2 px-10 rounded-full bg-gradient-to-b from-pink-400 to-pink-600 shadow-lg active:bg-pink-600"
           >
             Level 3
@@ -47,8 +47,8 @@ export function StartScreen({ start }) {
         </div>
 
         <button
-          onClick={start}
-          className="w-32 bg-gray-400 text-white py-2 px-10 rounded-full bg-gradient-to-b from-pink-400 to-pink-600 shadow-lg active:bg-pink-600 mt-3"
+          onClick={() => start(Math.floor(Math.random() * 3) + 1)}
+          className="w-32 bg-gray-400 text-white py-2  rounded-full bg-gradient-to-b from-pink-400 to-pink-600 shadow-lg active:bg-pink-600 mt-3"
         >
           Play Random
         </button>
@@ -57,7 +57,7 @@ export function StartScreen({ start }) {
   );
 }
 
-export function PlayScreen({ end }) {
+export function PlayScreen({ level, end }) {
   const [tiles, setTiles] = useState(null);
   const [tryCount, setTryCount] = useState(0);
 
@@ -138,9 +138,24 @@ export function PlayScreen({ end }) {
     });
   };
 
+  const calcGrid = (level) => {
+    switch (level) {
+      case 1:
+        return [2, 2, 2];
+      case 2:
+        return [8, 4, 4];
+      case 3:
+        return [10, 4, 5];
+
+      default:
+        break;
+    }
+  };
+
   return (
     <>
       <div className="h-screen flex flex-col gap-5 items-center justify-center">
+        <h1 className="text-3xl text-indigo-500 font-bold">Level {level}</h1>
         <div className="flex gap-3 items-center">
           <div className="text-indigo-500 font-semibold text-lg">Tries</div>
           <div className="text-indigo-500 bg-indigo-200 rounded-md px-3">
@@ -148,8 +163,14 @@ export function PlayScreen({ end }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-4 bg-indigo-50 rounded-xl p-3 gap-3 size-[350px]">
-          {getTiles(16).map((tile, i) => (
+        <div
+          className="grid bg-indigo-50 rounded-xl p-3 gap-3 size-[350px]"
+          style={{
+            gridTemplateColumns: `repeat(${calcGrid(level)[1]}, minmax(0,1fr))`,
+            gridTemplateRows: `repeat(${calcGrid(level)[2]}, minmax(0,1fr))`,
+          }}
+        >
+          {getTiles(calcGrid(level)[0] * 2).map((tile, i) => (
             <Tile key={i} flip={() => flip(i)} {...tile} />
           ))}
         </div>
