@@ -19,7 +19,7 @@ export const possibleTileContents = [
 export function StartScreen({ start }) {
   return (
     <div className="flex items-center justify-center h-screen">
-      <div className="flex items-center justify-center w-[350px] py-5 bg-pink-50 rounded-xl flex-col">
+      <div className="flex items-center justify-center size-[350px] py-5 bg-pink-50 rounded-xl flex-col">
         <h1 className="text-4xl font-bold text-pink-500 mb-4">Memory</h1>
         <p className="text-lg text-pink-500 mb-3">
           Flip over tiles looking for pairs
