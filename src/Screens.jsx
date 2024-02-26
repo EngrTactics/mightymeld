@@ -25,32 +25,11 @@ export function StartScreen({ start }) {
           Flip over tiles looking for pairs
         </p>
 
-        <div className="flex flex-col items-center gap-3">
-          <button
-            onClick={start}
-            className="w-48 bg-gray-400 text-white py-2 px-10 rounded-full bg-gradient-to-b from-pink-400 to-pink-600 shadow-lg active:bg-pink-600"
-          >
-            Level 1
-          </button>
-          <button
-            onClick={start}
-            className="w-48 bg-gray-400 text-white py-2 px-10 rounded-full bg-gradient-to-b from-pink-400 to-pink-600 shadow-lg active:bg-pink-600"
-          >
-            Level 2
-          </button>
-          <button
-            onClick={start}
-            className="w-48 bg-gray-400 text-white py-2 px-10 rounded-full bg-gradient-to-b from-pink-400 to-pink-600 shadow-lg active:bg-pink-600"
-          >
-            Level 3
-          </button>
-        </div>
-
         <button
           onClick={start}
           className="w-32 bg-gray-400 text-white py-2 px-10 rounded-full bg-gradient-to-b from-pink-400 to-pink-600 shadow-lg active:bg-pink-600 mt-3"
         >
-          Play Random
+          Play
         </button>
       </div>
     </div>
