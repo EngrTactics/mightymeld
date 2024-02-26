@@ -133,7 +133,6 @@ export function PlayScreen({ end }) {
           ))}
         </div>
       </div>
-      {tryCount}
     </>
   );
 }
