@@ -18,10 +18,41 @@ export const possibleTileContents = [
 
 export function StartScreen({ start }) {
   return (
-    <div>
-      <button onClick={start} className="bg-gray-400 text-white p-3">
-        Play
-      </button>
+    <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center w-[350px] py-5 bg-pink-50 rounded-xl flex-col">
+        <h1 className="text-4xl font-bold text-pink-500 mb-4">Memory</h1>
+        <p className="text-lg text-pink-500 mb-3">
+          Flip over tiles looking for pairs
+        </p>
+
+        <div className="flex flex-col items-center gap-3">
+          <button
+            onClick={start}
+            className="w-48 bg-gray-400 text-white py-2 px-10 rounded-full bg-gradient-to-b from-pink-400 to-pink-600 shadow-lg active:bg-pink-600"
+          >
+            Level 1
+          </button>
+          <button
+            onClick={start}
+            className="w-48 bg-gray-400 text-white py-2 px-10 rounded-full bg-gradient-to-b from-pink-400 to-pink-600 shadow-lg active:bg-pink-600"
+          >
+            Level 2
+          </button>
+          <button
+            onClick={start}
+            className="w-48 bg-gray-400 text-white py-2 px-10 rounded-full bg-gradient-to-b from-pink-400 to-pink-600 shadow-lg active:bg-pink-600"
+          >
+            Level 3
+          </button>
+        </div>
+
+        <button
+          onClick={start}
+          className="w-32 bg-gray-400 text-white py-2 px-10 rounded-full bg-gradient-to-b from-pink-400 to-pink-600 shadow-lg active:bg-pink-600 mt-3"
+        >
+          Play Random
+        </button>
+      </div>
     </div>
   );
 }
@@ -109,10 +140,19 @@ export function PlayScreen({ end }) {
 
   return (
     <>
-      <div>
-        {getTiles(6).map((tile, i) => (
-          <Tile key={i} flip={() => flip(i)} {...tile} />
-        ))}
+      <div className="h-screen flex flex-col gap-5 items-center justify-center">
+        <div className="flex gap-3 items-center">
+          <div className="text-indigo-500 font-semibold text-lg">Tries</div>
+          <div className="text-indigo-500 bg-indigo-200 rounded-md px-3">
+            {tryCount}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-4 bg-indigo-50 rounded-xl p-3 gap-3 size-[350px]">
+          {getTiles(16).map((tile, i) => (
+            <Tile key={i} flip={() => flip(i)} {...tile} />
+          ))}
+        </div>
       </div>
       {tryCount}
     </>
